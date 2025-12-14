@@ -16,7 +16,7 @@ This site is for students who want clear, exam-focused notes in Physics, Mathema
 
 ## 🔗 Quick Links
 
-- [Electromagnetic Theory Notes](#electromagnetic-theory-notes)  
+-https://drive.google.com/file/d/14XnVWmWOghzqee1GcY9NQpnv1jHN80Pn/view?usp=drivesdk ](#electromagnetic-theory-notes)  
 - [Waves and Optics Notes](#waves-and-optics-notes)  
 - [Differential Equations Notes](#differential-equations-notes)  
 - [Environmental Science Notes](#environmental-science-notes)  
