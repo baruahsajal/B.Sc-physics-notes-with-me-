@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>B.Sc Physics Notes with Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #050816;
+      --card: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: #0ea5e9;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 40%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to right, rgba(15,23,42,.95), rgba(8,47,73,.95));
+      border-bottom: 1px solid rgba(148,163,184,.25);
+    }
+    .nav {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-size: .9rem;
+    }
+    .nav a {
+      margin-left: 18px;
+      font-size: .9rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .nav a:hover { color: var(--accent); }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 28px 16px 40px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,.6);
+      font-size: .75rem;
+      color: var(--accent-soft);
+      margin-bottom: 10px;
+    }
+    .badge span {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      margin-right: 6px;
+      box-shadow: 0 0 0 4px rgba(34,197,94,.25);
+    }
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: .95rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: .85rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #0ea5e9, #22c55e);
+      color: #0b1120;
+      font-weight: 600;
+    }
+    .btn-outline {
+      border-color: rgba(148,163,184,.6);
+      color: var(--muted);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .hero-card {
+      border-radius: 18px;
+      padding: 16px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,.18), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(34,197,94,.18), transparent 55%),
+                  #020617;
+      border: 1px solid rgba(148,163,184,.35);
+      box-shadow: 0 18px 45px rgba(15,23,42,.9);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-chip {
+      position: absolute;
+      top: 12px; right: 14px;
+      font-size: .7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.8);
+      border: 1px solid rgba(148,163,184,.6);
+      color: var(--muted);
+    }
+    .note-card {
+      margin-top: 26px;
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(15,23,42,.92);
+      border: 1px solid rgba(148,163,184,.45);
+      font-size: .8rem;
+    }
+    .note-card strong { color: var(--accent); }
+
+    .section {
+      margin-bottom: 32px;
+    }
+    .section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .section p {
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    @media (min-width: 700px) {
+      .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    .card {
+      border-radius: 14px;
+      padding: 12px;
+      background: linear-gradient(to bottom right, rgba(15,23,42,.95), #020617);
+      border: 1px solid rgba(51,65,85,.9);
+    }
+    .card h3 {
+      font-size: .95rem;
+      margin-bottom: 4px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: .7rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.9);
+      border: 1px solid rgba(75,85,99,.8);
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(30,64,175,.5);
+      padding: 14px 16px 24px;
+      font-size: .75rem;
+      color: var(--muted);
+      text-align: center;
+      background: radial-gradient(circle at bottom, rgba(56,189,248,.15), transparent 55%);
+    }
+    footer a {
+      color: var(--accent-soft);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">BSc Physics Notes</div>
+      <nav>
+        <a href="#subjects">Subjects</a>
+        <a href="#notes">Notes</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="badge"><span></span>Updated notes for B.Sc students</div>
+        <h1>Clean, exam‑ready Physics and Environmental Science notes.</h1>
+        <p>
+          Concept‑focused summaries, important derivations, and solved examples for B.Sc Physics and
+          Environmental Science, organised topic‑wise so you can revise faster and smarter.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#notes">Browse notes</a>
+          <a class="btn btn-outline" href="https://github.com/barualishajal/B.Sc-physics-notes-with-me-" target="_blank">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-chip">Study dashboard</div>
+        <!-- Placeholder “image” block – replace with real image later -->
+        <div style="height:140px;border-radius:12px;background:
+          linear-gradient(135deg,rgba(56,189,248,.25),rgba(129,140,248,.12)),
+          url('https://source.unsplash.com/600x400/?physics,books') center/cover;
+          border:1px solid rgba(148,163,184,.5);">
+        </div>
+        <div class="note-card">
+          <strong>Today’s focus:</strong> Maxwell’s equations, diffraction at a single slit,
+          and first‑order differential equations. Perfect for quick night‑before revision.
+        </div>
+      </aside>
+    </section>
+
+    <section id="subjects" class="section">
+      <h2>Subjects covered</h2>
+      <p>Notes will gradually cover all core papers of B.Sc Physics along with Environmental Science components.</p>
+      <div class="grid grid-3" style="margin-top:14px;">
+        <div class="card">
+          <h3>Electromagnetic Theory</h3>
+          <p>Vector calculus, electrostatics, magnetostatics, Maxwell’s equations and wave propagation.</p>
+        </div>
+        <div class="card">
+          <h3>Waves &amp; Optics</h3>
+          <p>Interference, diffraction, polarisation, lasers and optical instruments with worked problems.</p>
+        </div>
+        <div class="card">
+          <h3>Differential Equations</h3>
+          <p>First‑ and higher‑order ODEs, series solutions and applications to physical systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="notes" class="section">
+      <h2>Notes sections</h2>
+      <p>Start with any topic below. Later you can link to PDFs or separate pages inside this repository.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Electromagnetic Theory Notes</h3>
+          <p>Field theory basics, boundary conditions, energy density and Poynting vector.</p>
+          <span class="tag">coming soon</span>
+        </div>
+        <div class="card">
+          <h3>Waves &amp; Optics Notes</h3>
+          <p>Huygens principle, interference fringes, diffraction patterns and resolving power.</p>
+          <span class="tag">coming soon</span>
+        </div>
+        <div class="card">
+          <h3>Environmental Science Notes</h3>
+          <p>Land and people of Assam, natural resources, and sustainable practices.</p>
+          <span class="tag">coming soon</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About this project</h2>
+      <p>
+        Created by Sajal Baruah as a personal notes archive and a way to share clear explanations with
+        other B.Sc students. The site is built with GitHub Pages so that every update to the notes
+        automatically appears here.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Sajal Baruah · Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+  </footer>
+</body>
+</html>
