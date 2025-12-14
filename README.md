@@ -1,3 +1,48 @@
-# B.Sc-physics-notes-with-me-
-A website to share my BSc Physics and Environmental Science notes with fellow students. Includes notes on Electromagnetic Theory, Waves &amp; Optics, Differential Equations, and Environmental Science.
-Website updated on 14 Dec 2025
+# B.Sc Physics Notes with Me
+
+Welcome to my B.Sc Physics and Environmental Science notes website.  
+This site is for students who want clear, exam-focused notes in Physics, Mathematics, and Environmental Science.
+
+---
+
+## 📚 Subjects Covered
+
+- Electromagnetic Theory  
+- Waves and Optics  
+- Differential Equations  
+- Environmental Science (MDC-3)  
+
+---
+
+## 🔗 Quick Links
+
+- [Electromagnetic Theory Notes](#electromagnetic-theory-notes)  
+- [Waves and Optics Notes](#waves-and-optics-notes)  
+- [Differential Equations Notes](#differential-equations-notes)  
+- [Environmental Science Notes](#environmental-science-notes)  
+
+---
+
+## Electromagnetic Theory Notes
+
+Short description of what you include here (syllabus, formulas, solved numericals).  
+Later you can add links to separate files or folders.
+
+## Waves and Optics Notes
+
+Describe what is covered and how it helps in exams.
+
+## Differential Equations Notes
+
+Mention types of problems, methods, and examples you plan to add.
+
+## Environmental Science Notes
+
+Mention units and important topics for B.Sc students.
+
+---
+
+## About Me
+
+I am Sajal Baruah, a B.Sc Physics student sharing my personal notes to help other learners.  
+If you find these notes useful, you can star the repository or share the website with friends.
