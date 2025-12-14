@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <title>B.Sc Physics Notes with Me</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // smooth scroll for in‑page links
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", e => {
+        const id = a.getAttribute("href").slice(1);
+        const target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({behavior: "smooth"});
+        }
+      });
+    });
+  });
+</script>
   <style>
     :root {
       --bg: #050816;
