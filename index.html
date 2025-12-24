@@ -11,6 +11,11 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px; /* Prevents content from hiding under fixed nav */
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -18,19 +23,21 @@
             background: #f5f5f5;
         }
 
-        /* Navigation */
+        /* Navigation - FIXED */
         nav {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 1rem 0;
-            position: sticky;
+            padding: 0.8rem 0;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
         }
 
         nav ul {
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             list-style: none;
             max-width: 1200px;
@@ -39,50 +46,85 @@
         }
 
         nav li {
-            margin: 0 15px;
+            margin: 0 8px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: background 0.3s;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: block;
         }
 
         nav a:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        /* Hero Section - ADD TOP MARGIN */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 100px 20px 60px; /* Added top padding to account for fixed nav */
             text-align: center;
+            margin-top: 60px; /* Space for fixed navigation */
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
         }
 
         .hero .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-style: italic;
-            margin-bottom: 20px;
-            opacity: 0.9;
+            margin-bottom: 25px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease;
         }
 
         .hero-image {
-            max-width: 100%;
-            height: 300px;
+            max-width: 90%;
+            height: 250px;
             object-fit: cover;
             border-radius: 15px;
-            margin: 30px auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin: 25px auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Container */
@@ -95,39 +137,54 @@
         section {
             background: white;
             margin: 30px 0;
-            padding: 40px;
+            padding: 35px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
         }
 
         h2 {
             color: #667eea;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 25px;
             border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
+            display: inline-block;
         }
 
         h3 {
             color: #764ba2;
-            font-size: 1.6rem;
-            margin: 25px 0 15px 0;
+            font-size: 1.5rem;
+            margin: 20px 0 12px 0;
         }
 
         /* Quote Styling */
         .quote-box {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 25px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            padding: 25px 30px;
             margin: 20px 0;
             border-left: 5px solid #667eea;
             border-radius: 10px;
             font-style: italic;
+            transition: all 0.3s ease;
+        }
+
+        .quote-box:hover {
+            border-left-width: 8px;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.15);
         }
 
         .quote-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #2d3748;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            line-height: 1.7;
         }
 
         .quote-author {
@@ -140,7 +197,7 @@
         /* Importance Grid */
         .importance-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin: 30px 0;
         }
@@ -148,132 +205,100 @@
         .importance-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 25px;
-            border-radius: 12px;
-            transition: transform 0.3s;
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .importance-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .importance-card:hover::before {
+            top: -100%;
+            right: -100%;
         }
 
         .importance-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
         }
 
         .importance-card h3 {
             color: white;
             margin-top: 0;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Syllabus Section */
-        .syllabus-container {
-            margin-top: 30px;
+        .importance-card p {
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
         }
 
-        .semester-block {
-            background: #f8f9fa;
-            margin: 20px 0;
+        /* Syllabus Table */
+        .syllabus-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
             border-radius: 12px;
             overflow: hidden;
-            border: 2px solid #e2e8f0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
-        .semester-header {
+        .syllabus-table thead tr {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px 20px;
-            font-size: 1.3rem;
-            font-weight: bold;
         }
 
-        .course-item {
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .course-header {
-            width: 100%;
-            background: #fff;
-            border: none;
-            padding: 18px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: background 0.3s;
+        .syllabus-table th {
+            padding: 18px 15px;
             text-align: left;
+            font-weight: 600;
+            font-size: 1.05rem;
         }
 
-        .course-header:hover {
+        .syllabus-table td {
+            padding: 16px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .syllabus-table tbody tr:nth-child(even) {
             background: #f7fafc;
         }
 
-        .course-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2d3748;
-            display: flex;
-            align-items: center;
+        .syllabus-table tbody tr:hover {
+            background: #edf2f7;
+            transition: background 0.3s ease;
         }
 
-        .course-icon {
-            margin-right: 10px;
-            font-size: 1.3rem;
-        }
-
-        .toggle-icon {
-            font-size: 1.5rem;
-            color: #667eea;
-            font-weight: bold;
-            transition: transform 0.3s;
-        }
-
-        .course-item.active .toggle-icon {
-            transform: rotate(45deg);
-        }
-
-        .course-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            background: white;
-        }
-
-        .course-item.active .course-content {
-            max-height: 500px;
-            padding: 20px;
-        }
-
-        .course-content ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .course-content li {
-            padding: 8px 0;
-            padding-left: 30px;
-            position: relative;
-            color: #4a5568;
-        }
-
-        .course-content li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* Physics Branches Table */
+        /* Branches Table */
         .branches-table {
             width: 100%;
             border-collapse: collapse;
             margin: 25px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         .branches-table th {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px;
+            padding: 16px;
             text-align: left;
             font-weight: 600;
         }
@@ -281,38 +306,11 @@
         .branches-table td {
             padding: 15px;
             border-bottom: 1px solid #e2e8f0;
-        }
-
-        .branches-table tr:hover {
-            background: #f7fafc;
-        }
-
-        /* Application Icons */
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .app-card {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s;
         }
 
-        .app-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-        }
-
-        .app-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .branches-table tr:hover td {
+            background: #f7fafc;
         }
 
         /* Footer */
@@ -320,73 +318,420 @@
             background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
+            padding: 50px 20px 30px;
+            margin-top: 60px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        footer p {
+            font-size: 1.05rem;
+            margin: 15px 0;
+            line-height: 1.8;
         }
 
         .contact-links {
-            margin: 20px 0;
+            margin: 30px 0 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
         }
 
         .contact-links a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
             font-size: 1.1rem;
-            transition: color 0.3s;
+            padding: 12px 25px;
+            border: 2px solid white;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .contact-links a:hover {
+            background: white;
             color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
         }
 
-        /* Responsive */
+        .footer-quote {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 25px;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
             nav ul {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: row;
+                justify-content: center;
             }
 
             nav li {
-                margin: 5px 0;
+                margin: 5px 4px;
             }
 
+            nav a {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+
+            .hero {
+                padding: 80px 15px 40px;
+                margin-top: 70px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-image {
+                height: 200px;
+            }
+
+            section {
+                padding: 25px 20px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .importance-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .syllabus-table,
             .branches-table {
                 font-size: 0.85rem;
             }
 
+            .syllabus-table th,
+            .syllabus-table td,
             .branches-table th,
             .branches-table td {
-                padding: 10px;
+                padding: 12px 10px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .contact-links a {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            section {
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Fixed Navigation -->
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#importance">Importance</a></li>
-            <li><a href="#quotes">Quotes</a></li>
-            <li><a href="#syllabus">Syllabus</a></li>
-            <li><a href="#branches">Branches</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home">🏠 Home</a></li>
+            <li><a href="#importance">⚡ Importance</a></li>
+            <li><a href="#quotes">💭 Quotes</a></li>
+            <li><a href="#syllabus">📚 Syllabus</a></li>
+            <li><a href="#branches">🔬 Branches</a></li>
+            <li><a href="#contact">📞 Contact</a></li>
         </ul>
     </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>🌌 The World of Physics</h1>
+        <p class="subtitle">Exploring the Fundamental Laws of Nature</p>
+        <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=1200&h=300&fit=crop" 
+             alt="Physics Concept" class="hero-image">
+        <div class="quote-box" style="background: rgba(255,255,255,0.15); border-color: white; margin-top: 30px;">
+            <p class="quote-text" style="color: white;">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
+            <p class="quote-author" style="color: white;">— Dan Brown</p>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- What is Physics -->
+        <section>
+            <h2>🔬 What is Physics?</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 20px;">
+                Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works. 
+                From the tiniest subatomic particles to the vast expanses of galaxies, physics provides the framework 
+                for comprehending matter, energy, space, and time.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 15px;">
+                It is the foundation upon which all natural sciences are built, bridging the gap between theoretical 
+                knowledge and practical applications that shape our modern world.
+            </p>
+        </section>
+
+        <!-- Importance Section -->
+        <section id="importance">
+            <h2>⚡ The Importance of Physics</h2>
+
+            <div class="importance-grid">
+                <div class="importance-card">
+                    <h3>💡 Technological Innovation</h3>
+                    <p>Physics drives technological progress that defines our modern civilization. Without quantum mechanics, 
+                    we wouldn't have computers, smartphones, or the internet.</p>
+                </div>
+
+                <div class="importance-card">
+                    <h3>🌟 Understanding Our Universe</h3>
+                    <p>From Einstein's relativity to quantum mechanics, physics reveals the deepest secrets of nature 
+                    and explains how the universe works.</p>
+                </div>
+
+                <div class="importance-card">
+                    <h3>🌍 Solving Global Challenges</h3>
+                    <p>Physics plays a crucial role in addressing climate change, developing renewable energy, 
+                    and creating sustainable technologies.</p>
+                </div>
+
+                <div class="importance-card">
+                    <h3>📈 Economic Progress</h3>
+                    <p>Physics generates fundamental knowledge needed for technological advances that drive 
+                    economic growth worldwide.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotes Section -->
+        <section id="quotes">
+            <h2>💭 Wisdom from Great Physicists</h2>
+
+            <div class="quote-box">
+                <p class="quote-text">"The first principle is that you must not fool yourself – and you are the easiest person to fool."</p>
+                <p class="quote-author">— Richard Feynman</p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">"No one must think that Newton's great creation can be overthrown in any real sense by this or by any other theory. His clear and wide ideas will forever retain their significance as the foundation on which our modern conceptions of physics have been built."</p>
+                <p class="quote-author">— Albert Einstein</p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">"It is the facts that matter, not the proofs. Physics can progress without the proofs, but we can't go on without the facts."</p>
+                <p class="quote-author">— Richard Feynman</p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">"Somewhere, something incredible is waiting to be known."</p>
+                <p class="quote-author">— Carl Sagan</p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">"The principles of physics, as far as I can see, do not speak against the possibility of maneuvering things atom by atom."</p>
+                <p class="quote-author">— Richard Feynman</p>
+            </div>
+        </section>
+
+        <!-- Syllabus Section -->
+        <section id="syllabus">
+            <h2>📚 Course Syllabus & Study Materials</h2>
+            <p style="font-size: 1.1rem; margin: 20px 0; text-align: center; line-height: 1.8;">
+                <strong>List of Major and Minor courses offered by the department</strong><br>
+                <strong>For the first three years of FYUGP Program</strong><br>
+                <span style="color: #666;">2024 and 2025 Batch</span>
+            </p>
+
+            <!-- Syllabus Table -->
+            <div style="overflow-x: auto; margin: 40px 0;">
+                <table class="syllabus-table">
+                    <thead>
+                        <tr>
+                            <th>Semester</th>
+                            <th>Major</th>
+                            <th>Minor</th>
+                            <th>SEC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">First</td>
+                            <td>1 PHY0100104 - Mathematical Physics & Mechanics</td>
+                            <td>1 PHY0100104 - Mathematical Physics & Mechanics</td>
+                            <td>1 AI in PHYSICS (SWAYAM)</td>
+                        </tr>
+
+                        <tr>
+                            <td style="font-weight: 600;">Second</td>
+                            <td>2 PHY0200104 - Mathematical Physics & Electricity and Magnetism</td>
+                            <td>2 PHY0200104 - Mathematical Physics & Electricity and Magnetism</td>
+                            <td>2 BASIC WORKSHOP SKILLS IN PHYSICS & ELECTRONICS</td>
+                        </tr>
+
+                        <tr>
+                            <td style="font-weight: 600;">Third</td>
+                            <td>
+                                3 PHY 0300104 - Waves & Optics<br><br>
+                                4 PHY 0300204 - Electromagnetic Theory
+                            </td>
+                            <td>3 PHY 0300104 - Waves & Optics</td>
+                            <td>3</td>
+                        </tr>
+
+                        <tr>
+                            <td style="font-weight: 600;">Fourth</td>
+                            <td>
+                                5 PHY 0400104 - Classical Mechanics<br><br>
+                                6 PHY 0400204 - Quantum Mechanics-I<br><br>
+                                7 PHY 0400304 - Analog Electronics<br><br>
+                                8 PHY 0400404 - Mathematical Physics
+                            </td>
+                            <td>4 PHY 0400304 - Analog Electronics</td>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <td style="font-weight: 600;">Fifth</td>
+                            <td>
+                                9 PHY 0500104 - Atomic and Molecular Physics<br><br>
+                                10 PHY 0500204 - Condensed Matter Physics<br><br>
+                                11 PHY 0500304 - Heats & Thermodynamics
+                            </td>
+                            <td>5 PHY 0500304 - Heats & Thermodynamics</td>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <td style="font-weight: 600;">Sixth</td>
+                            <td>
+                                12 PHY 0600104 - Nuclear & Particle Physics<br><br>
+                                13 PHY 0600204 - Digital Electronics
+                            </td>
+                            <td>6 PHY 0600104 - Nuclear & Particle Physics</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Branches Section -->
+        <section id="branches">
+            <h2>🔬 Major Branches of Physics</h2>
+
+            <table class="branches-table">
+                <thead>
+                    <tr>
+                        <th>Branch</th>
+                        <th>Description</th>
+                        <th>Key Topics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Classical Mechanics</strong></td>
+                        <td>Study of motion of objects and forces</td>
+                        <td>Newton's Laws, Energy, Momentum</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Electromagnetism</strong></td>
+                        <td>Study of electric and magnetic fields</td>
+                        <td>Maxwell's Equations, EM Waves</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quantum Mechanics</strong></td>
+                        <td>Physics at atomic and subatomic scales</td>
+                        <td>Wave-Particle Duality, Uncertainty</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thermodynamics</strong></td>
+                        <td>Study of heat and energy transfer</td>
+                        <td>Laws of Thermodynamics, Entropy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optics</strong></td>
+                        <td>Study of light and its properties</td>
+                        <td>Reflection, Refraction, Interference</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nuclear Physics</strong></td>
+                        <td>Study of atomic nuclei and reactions</td>
+                        <td>Radioactivity, Fission, Fusion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Astrophysics</strong></td>
+                        <td>Physics of celestial objects and universe</td>
+                        <td>Stars, Galaxies, Cosmology</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Condensed Matter</strong></td>
+                        <td>Physics of solid and liquid matter</td>
+                        <td>Semiconductors, Superconductivity</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <h3>🤝 Connect & Collaborate</h3>
+        <p>Interested in physics discussions, study materials, or collaborative projects?</p>
+        
+        <div class="contact-links">
+            <a href="mailto:your.email@example.com">📧 Email</a>
+            <a href="https://github.com/baruahsajal" target="_blank">💻 GitHub</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">🔗 LinkedIn</a>
+        </div>
+
+        <div class="footer-quote">
+            <p style="font-size: 1.05rem; margin-bottom: 8px;">"The principles of physics, as far as I can see, do not speak against the possibility of maneuvering things atom by atom."</p>
+            <p style="font-weight: bold;">— Richard Feynman</p>
+        </div>
+
+        <div class="copyright">
+            <p>© 2025 Physics Portal | Last Updated: December 2025</p>
+        </div>
+    </footer>
+
+</body>
+</html>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
